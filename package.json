@@ -18,8 +18,8 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook --docs -p 6006",
+    "build-storybook": "build-storybook --docs"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -51,6 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@size-limit/preset-small-lib": "^4.9.0",
+    "@storybook/addon-docs": "^6.1.9",
     "@storybook/addon-essentials": "^6.1.9",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.1.9",
