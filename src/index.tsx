@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 export interface Settings {
   /**
@@ -44,18 +44,7 @@ export interface Settings {
 }
 
 export interface Props extends Settings {
-  /**
-   * URL of the cover image.
-   */
-  imageUrl: string
-  /**
-   * Used for SEO and accessibility as image “alt”. Can be the book name.
-   */
-  imageAlt: string
-  /**
-   * URL for link. Keep empty if you don’t want a link.
-   */
-  href: string
+  children: React.ReactNode
 }
 
 /**
@@ -80,9 +69,7 @@ export interface Props extends Settings {
  * ```
  */
 export const BookCover = ({
-  imageUrl,
-  imageAlt = '',
-  href = '',
+  children,
   rotate = 30,
   rotateHover = 5,
   perspective = 600,
@@ -94,7 +81,14 @@ export const BookCover = ({
   height = 300,
   pagesOffset = 3,
 }: Props) => {
-  const css = getCssForSettings({
+  const uniqueId = useMemo(
+    () =>
+      Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1),
+    [],
+  )
+  const css = getCssForSettings(uniqueId, {
     rotate,
     rotateHover,
     perspective,
@@ -107,41 +101,26 @@ export const BookCover = ({
     pagesOffset,
   })
 
-  const book = (
-    <div className="book">
-      <img alt={imageAlt} src={imageUrl} />
-    </div>
-  )
-
   return (
     <>
       <style>{css}</style>
-      {href ? (
-        <a
-          className="book-container"
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {book}
-        </a>
-      ) : (
-        <div className="book-container">{book}</div>
-      )}
+      <div className={`book-container-${uniqueId}`}>
+        <div className="book">{children}</div>
+      </div>
     </>
   )
 }
 
-export const getCssForSettings = (settings: Settings) => {
+export const getCssForSettings = (uniqueId: string, settings: Settings) => {
   return `
-    .book-container {
+    .book-container-${uniqueId} {
       display: flex;
       align-items: center;
       justify-content: center;
       perspective: ${settings.perspective}px;
     }
     
-    @keyframes initAnimation {
+    @keyframes initAnimation-${uniqueId} {
       0% {
         transform: rotateY(${-settings.rotateHover}deg);
       }
@@ -150,37 +129,37 @@ export const getCssForSettings = (settings: Settings) => {
       }
     }
     
-    .book {
+    .book-container-${uniqueId} .book {
       width: ${settings.width}px;
       height: ${settings.height}px;
       position: relative;
       transform-style: preserve-3d;
       transform: rotateY(${-settings.rotate}deg);
       transition: transform ${settings.transitionDuration}s ease;
-      animation: 1s ease 0s 1 initAnimation;
+      animation: 1s ease 0s 1 initAnimation-${uniqueId};
+      
     }
     
-    .book:hover {
+    .book-container-${uniqueId} .book:hover {
       transform: rotateY(${-settings.rotateHover}deg);
     }
     
-    .book > :first-child {
+    .book-container-${uniqueId} .book > :first-child {
       position: absolute;
       top: 0;
       left: 0;
-      background-color: red;
       width: ${settings.width}px;
       height: ${settings.height}px;
       transform: translateZ(${settings.thickness / 2}px);
       background-color: ${settings.bgColor};
       border-radius: 0 ${settings.radius}px ${settings.radius}px 0;
       box-shadow: 5px 5px 20px #666;
+      background-color: ${settings.bgColor};
     }
     
-    .book::before {
+    .book-container-${uniqueId} .book::before {
       position: absolute;
       content: ' ';
-      background-color: blue;
       left: 0;
       top: ${settings.pagesOffset}px;
       width: ${settings.thickness - 2}px;
@@ -213,7 +192,7 @@ export const getCssForSettings = (settings: Settings) => {
         );
     }
     
-    .book::after {
+    .book-container-${uniqueId} .book::after {
       position: absolute;
       top: 0;
       left: 0;

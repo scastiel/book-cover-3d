@@ -17,9 +17,7 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why",
-    "storybook": "start-storybook --docs -p 6006",
-    "build-storybook": "build-storybook --docs"
+    "analyze": "size-limit --why"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -35,28 +33,22 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "name": "threed-book-cover",
+  "name": "book-cover-3d",
   "author": "Sebastien Castiel <sebastien@castiel.me>",
-  "module": "dist/threed-book-cover.esm.js",
+  "module": "dist/book-cover-3d.esm.js",
   "size-limit": [
     {
-      "path": "dist/threed-book-cover.cjs.production.min.js",
+      "path": "dist/book-cover-3d.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/threed-book-cover.esm.js",
+      "path": "dist/book-cover-3d.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@size-limit/preset-small-lib": "^4.9.0",
-    "@storybook/addon-docs": "^6.1.9",
-    "@storybook/addon-essentials": "^6.1.9",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.1.9",
-    "@storybook/addons": "^6.1.9",
-    "@storybook/react": "^6.1.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "babel-loader": "^8.2.2",
