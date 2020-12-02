@@ -43,30 +43,12 @@ export interface Settings {
   pagesOffset: number
 }
 
-export interface Props extends Settings {
+export interface Props extends Partial<Settings> {
   children: React.ReactNode
 }
 
 /**
  * `BookCover` is the component you can use to display an animated 3D version of your book cover.
- *
- * ## Install
- *
- * ```bash
- * yarn add book-cover-3d
- * # Or with NPM:
- * npm i --save book-cover-3d
- * ```
- *
- * ## Usage
- *
- * The only required parameter is the URL of the image you want to display as a cover.
- *
- * ```jsx
- * import { BookCover } from 'book-cover-3d'
- *
- * <BookCover imageUrl="https://3dbook.xyz/demo-book.png" />
- * ```
  */
 export const BookCover = ({
   children,

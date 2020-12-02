@@ -88,3 +88,30 @@ return (
   </BookCover>
 )
 ```
+
+## HTML and CSS for given settings
+
+If you don’t want to use the React component, you can extract the CSS generated for
+given 3D settings.
+
+```js
+import { getCssForSettings } from 'book-cover-3d'
+
+const settings = {
+  rotate: 30,
+  // ...
+}
+const css = getCssForSettings('BOOK_ID', settings)
+```
+
+```html
+<div class="book-container-BOOK_ID">
+  <div class="book">
+    <img src="https://3dbook.xyz/demo-book.png" />
+  </div>
+</div>
+```
+
+Note that you can use a unique ID for your book cover (in HTML and when
+calling `getCssForSettings`), so you can use different settings for
+different books.
