@@ -30,6 +30,10 @@ export interface Settings {
    */
   bgColor: string
   /**
+   * Color of box shadow.
+   */
+  shadowColor: string
+  /**
    * Width of the book, in pixels.
    */
   width: number
@@ -59,6 +63,7 @@ export const BookCover = ({
   radius = 2,
   thickness = 50,
   bgColor = '#01060f',
+  shadowColor = '#aaaaaa',
   width = 200,
   height = 300,
   pagesOffset = 3,
@@ -78,6 +83,7 @@ export const BookCover = ({
     radius,
     thickness,
     bgColor,
+    shadowColor,
     width,
     height,
     pagesOffset,
@@ -119,7 +125,6 @@ export const getCssForSettings = (uniqueId: string, settings: Settings) => {
       transform: rotateY(${-settings.rotate}deg);
       transition: transform ${settings.transitionDuration}s ease;
       animation: 1s ease 0s 1 initAnimation-${uniqueId};
-      
     }
     
     .book-container-${uniqueId} .book:hover {
@@ -135,7 +140,7 @@ export const getCssForSettings = (uniqueId: string, settings: Settings) => {
       transform: translateZ(${settings.thickness / 2}px);
       background-color: ${settings.bgColor};
       border-radius: 0 ${settings.radius}px ${settings.radius}px 0;
-      box-shadow: 5px 5px 20px #666;
+      box-shadow: 5px 5px 20px ${settings.shadowColor};
       background-color: ${settings.bgColor};
     }
     
@@ -184,7 +189,7 @@ export const getCssForSettings = (uniqueId: string, settings: Settings) => {
       transform: translateZ(${-settings.thickness / 2}px);
       background-color: ${settings.bgColor};
       border-radius: 0 ${settings.radius}px ${settings.radius}px 0;
-      box-shadow: -10px 0 50px 10px #666;
+      box-shadow: -10px 0 50px 10px ${settings.shadowColor};
     }
   `
 }
