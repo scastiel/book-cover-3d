@@ -95,7 +95,7 @@ If you don’t want to use the React component, you can extract the CSS generate
 given 3D settings.
 
 ```js
-import { getCssForSettings } from 'book-cover-3d'
+import { getCssForSettings } from 'book-cover-3d/dist/helpers'
 
 const settings = {
   rotate: 30,
