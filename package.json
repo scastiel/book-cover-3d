@@ -1,5 +1,12 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "name": "book-cover-3d",
+  "author": "Sebastien Castiel <sebastien@castiel.me>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scastiel/book-cover-3d"
+  },
+  "description": "A React component to display a 3D Book Cover in a web page.",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,8 +39,6 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "name": "book-cover-3d",
-  "author": "Sebastien Castiel <sebastien@castiel.me>",
   "module": "dist/book-cover-3d.esm.js",
   "size-limit": [
     {
