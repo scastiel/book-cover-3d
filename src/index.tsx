@@ -164,9 +164,9 @@ export const getCssForSettings = (uniqueId: string, settings: Settings) => {
       top: ${settings.pagesOffset}px;
       width: ${settings.thickness - 2}px;
       height: ${settings.height - 2 * settings.pagesOffset}px;
-      transform: translateX(${
-        settings.width - settings.thickness / 2 - settings.pagesOffset
-      }px) rotateY(90deg);
+      transform: translateX(${settings.width -
+        settings.thickness / 2 -
+        settings.pagesOffset}px) rotateY(90deg);
       background: linear-gradient(90deg, 
         #fff 0%,
         #f9f9f9 5%,

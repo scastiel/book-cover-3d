@@ -28,7 +28,7 @@ export const MyComponent = () => {
 
 ### Using an image as the cover
 
-<img src="images/book-image.webp" style="float: right; margin-left: 1em">
+![Book with image as cover](images/book-image.webp)
 
 ```jsx
 return (
@@ -40,7 +40,7 @@ return (
 
 ### Using custom content
 
-<img src="images/book-custom-content.webp" style="float: right; margin-left: 1em">
+![Book with custom content](images/book-custom-content.webp)
 
 ```jsx
 return (
