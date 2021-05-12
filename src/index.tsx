@@ -30,6 +30,14 @@ export interface Settings {
    */
   bgColor: string
   /**
+   * Color of the spine of the book. Accepts a css color value or url image.
+   */
+  spineColor: string
+  /**
+   * Children or content to put in the spine.
+   */
+  spineChildren: React.ReactNode
+  /**
    * Color of box shadow.
    */
   shadowColor: string
@@ -67,6 +75,8 @@ export const BookCover = ({
   width = 200,
   height = 300,
   pagesOffset = 3,
+  spineColor = 'black',
+  spineChildren = null,
 }: Props) => {
   const uniqueId = useMemo(
     () =>
@@ -87,13 +97,18 @@ export const BookCover = ({
     width,
     height,
     pagesOffset,
+    spineColor,
+    spineChildren,
   })
 
   return (
     <>
       <style>{css}</style>
       <div className={`book-container-${uniqueId}`}>
-        <div className="book">{children}</div>
+        <div className="book">
+          {children}
+          <div className="book-spine">{spineChildren}</div>
+        </div>
       </div>
     </>
   )
@@ -190,6 +205,24 @@ export const getCssForSettings = (uniqueId: string, settings: Settings) => {
       background-color: ${settings.bgColor};
       border-radius: 0 ${settings.radius}px ${settings.radius}px 0;
       box-shadow: -10px 0 50px 10px ${settings.shadowColor};
+    }
+
+    .book-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: ${settings.thickness + 2}px;
+      bottom: 0;
+      transform: translateX(0) translateZ(${-(settings.thickness + 2) /
+        2}px) rotateY(-90deg);
+      transform-style: preserve-3d;
+      transform-origin: left;
+      background: ${settings.spineColor};
+      /* Default settings for spine content */
+      /* Center spine content */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   `
 }
