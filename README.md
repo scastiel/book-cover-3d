@@ -64,6 +64,8 @@ return (
 | radius             | `number` | Radius of right corners, in pixels                     | `2`       |
 | thickness          | `number` | Book thickness, in pixels                              | `50`      |
 | bgColor            | `string` | Color of the inside of back cover                      | `#01060f` |
+| spineColor         | `string` | Color of the spine of the book, as css color value or image url  | `#01060f` |
+| spineChildren      | `React.ReactNode` | Children or content to put in the spine                      | `null` |
 | width              | `number` | Width of the book, in pixels                           | `200`     |
 | height             | `number` | Height of the book, in pixels                          | `300`     |
 | pagesOffset        | `number` | Offset between the pages and the cover size, in pixels | `3`       |
@@ -80,6 +82,8 @@ return (
     radius={5}
     thickness={30}
     bgColor="#1e3a8a"
+    spineColor="#1e3a8a"
+    spineChildren={<div className="book-spine-title">1</div>}
     width={300}
     height={200}
     pagesOffset={5}
